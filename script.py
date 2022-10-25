@@ -1,3 +1,8 @@
+# MA RMV is appointment only and appointments are released sporadically throughout the day (eg due to cancellations).
+# This script continuously searches all/some (toggle nearby_only) RMV offices for a license transfer appointment in October.
+# An appointment is not actually booked. The script will just beep and print out the options, leaving a window open on the selection page.
+# ten second wait between checks; there's no acceptable use policy or robots.txt on the website so choosing an excessively good-citizeny wait time.
+
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -74,8 +79,7 @@ try:
                     found_desired_appt = True
                     print("FOUND!")
                     print(service_center_name)
-                    print(date)
-                    break
+                    print(date.text)
             driver.back()
         
         print_appt_dates(all_appt_dates)
